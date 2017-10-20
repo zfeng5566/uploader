@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Uploader Demo</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <style>
+        .uploader-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .uploader-button input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 200px;
+            outline: none;
+            opacity: 0;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="uploader.js"></script>
+    <script>
+        $(function() {
+            var uploader = new Uploader({
+                selectButton: "#uploader-button",
+                url: "upload.php"
+            });
+
+            uploader
+                    .on("fileAdd", function() {
+                        console.log("fileAdd", arguments);
+                    })
+
+                    .on("fileRemove", function() {
+                        console.log("fileRemove", arguments);
+                    })
+
+                    .on("fileInvalid", function() {
+                        console.log("fileInvalid", arguments);
+                    })
+
+                    .on("tooManyFile", function() {
+                        console.log("tooManyFile", arguments);
+                    })
+
+                    .on("beforeUpload", function() {
+                        console.log("beforeUpload", arguments);
+                    })
+
+                    .on("uploadStart", function() {
+                        console.log("uploadStart", arguments);
+                    })
+
+                    .on("uploadProgress", function() {
+                        console.log("uploadProgress", arguments);
+                    })
+
+                    .on("uploadAbort", function() {
+                        console.log("uploadAbort", arguments);
+                    })
+
+                    .on("uploadComplete", function() {
+                        console.log("uploadComplete", arguments);
+                        alert(arguments[2]);
+                    })
+
+                    .on("uploadFail", function() {
+                        console.log("uploadFail", arguments);
+                    });
+
+        });
+    </script>
+</head>
+<body>
+    <span id="uploader-button" class="btn btn-primary uploader-button">Upload</span>
+</body>
+</html>
